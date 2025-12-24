@@ -4,7 +4,8 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
-    public class SoundData : MonoBehaviour
+    [System.Serializable]
+    public class SoundData
     {
         public AudioClip Clip;
         public string Name;
