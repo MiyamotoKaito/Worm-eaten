@@ -39,6 +39,7 @@ public class AudioManager : MonoBehaviour
                 var player = new GameObject("SEPlayer").AddComponent<AudioSource>();
                 player.clip = se.Clip;
                 player.Play();
+                Destroy(player, se.Clip.length);
             }
         }
     }
