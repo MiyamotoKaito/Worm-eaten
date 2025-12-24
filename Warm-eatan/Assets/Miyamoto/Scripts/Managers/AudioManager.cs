@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
-using System.Net.NetworkInformation;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    public class SoundData
+    public static AudioManager Instance;
+    public class SoundData : MonoBehaviour
     {
         public AudioClip Clip;
         public string Name;
@@ -13,11 +13,23 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private List<SoundData> _seList;
     [SerializeField] private List<SoundData> _bgmList;
 
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     /// <summary>
     /// SEを流す
     /// </summary>
     /// <param name="name"></param>
-    private void PlaySE(string name)
+    public void PlaySE(string name)
     {
         foreach (var se in _seList)
         {
@@ -29,4 +41,5 @@ public class AudioManager : MonoBehaviour
             }
         }
     }
+
 }
