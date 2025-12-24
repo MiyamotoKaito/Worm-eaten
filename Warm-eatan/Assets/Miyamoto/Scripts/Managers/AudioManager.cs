@@ -43,6 +43,7 @@ public class AudioManager : MonoBehaviour
                 player.clip = se.Clip;
                 player.Play();
                 Destroy(player, se.Clip.length);
+                break;
             }
         }
     }
@@ -60,6 +61,7 @@ public class AudioManager : MonoBehaviour
                 _bgmPlayer.loop = true;
                 _bgmPlayer.playOnAwake = false;
                 _bgmPlayer.Play();
+                break;
             }
         }
     }
