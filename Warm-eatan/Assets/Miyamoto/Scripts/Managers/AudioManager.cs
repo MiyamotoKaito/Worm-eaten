@@ -12,7 +12,7 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField] private List<SoundData> _seList;
     [SerializeField] private List<SoundData> _bgmList;
-
+    private AudioSource _bgmPlayer;
     private void Awake()
     {
         if (Instance == null)
@@ -24,6 +24,7 @@ public class AudioManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        _bgmPlayer = this.gameObject.GetComponentInChildren<AudioSource>();
     }
     /// <summary>
     /// SEを流す
@@ -42,4 +43,17 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public void PlayeBGM(string name)
+    {
+        foreach (var bgm in _bgmList)
+        {
+            if (bgm.Name == name)
+            {
+                _bgmPlayer.clip = bgm.Clip;
+                _bgmPlayer.loop = true;
+                _bgmPlayer.playOnAwake = false;
+                _bgmPlayer.Play();
+            }
+        }
+    }
 }
