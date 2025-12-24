@@ -43,7 +43,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void PlayeBGM(string name)
+    public void PlayBGM(string name)
     {
         foreach (var bgm in _bgmList)
         {
