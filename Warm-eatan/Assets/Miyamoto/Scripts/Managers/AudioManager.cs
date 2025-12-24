@@ -13,6 +13,10 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private List<SoundData> _seList;
     [SerializeField] private List<SoundData> _bgmList;
 
+    /// <summary>
+    /// SEを流す
+    /// </summary>
+    /// <param name="name"></param>
     private void PlaySE(string name)
     {
         foreach (var se in _seList)
