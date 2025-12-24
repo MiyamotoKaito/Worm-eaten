@@ -46,7 +46,10 @@ public class AudioManager : MonoBehaviour
             }
         }
     }
-
+    /// <summary>
+    /// BGMを流す
+    /// </summary>
+    /// <param name="name"></param>
     public void PlayBGM(string name)
     {
         foreach (var bgm in _bgmList)
