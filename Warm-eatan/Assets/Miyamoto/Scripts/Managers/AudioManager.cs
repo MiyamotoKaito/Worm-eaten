@@ -15,6 +15,14 @@ public class AudioManager : MonoBehaviour
 
     private void PlaySE(string name)
     {
-
+        foreach (var se in _seList)
+        {
+            if (se.Name == name)
+            {
+                var player = new GameObject("SEPlayer").AddComponent<AudioSource>();
+                player.clip = se.Clip;
+                player.Play();
+            }
+        }
     }
 }
