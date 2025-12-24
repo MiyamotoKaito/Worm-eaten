@@ -46,6 +46,7 @@ public class AudioManager : MonoBehaviour
                 break;
             }
         }
+        Debug.LogWarning($"{name}と合致するサウンド名がSEリストで見つかりませんでした");
     }
     /// <summary>
     /// BGMを流す
@@ -64,5 +65,6 @@ public class AudioManager : MonoBehaviour
                 break;
             }
         }
+        Debug.LogWarning($"{name}と合致するサウンド名がBGMリストで見つかりませんでした");
     }
 }
