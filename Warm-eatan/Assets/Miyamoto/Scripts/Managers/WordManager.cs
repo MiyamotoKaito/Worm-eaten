@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class WordManager : MonoBehaviour
@@ -60,5 +59,13 @@ public class WordManager : MonoBehaviour
             //_wordsに格納
             _words.Add(word);
         }
+    }
+    /// <summary>
+    ///　ワードのリストからランダムに一つ問題を取り出す
+    /// </summary>
+    /// <returns></returns>
+    public WordData SetQuestion()
+    {
+        return _words[Random.Range(0, _words.Count - 1)];
     }
 }
