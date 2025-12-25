@@ -4,15 +4,18 @@ using UnityEngine;
 [System.Serializable]
 public class WordData
 {
-    public string QuestionWord;
-    public char CorrectChar;
-    public List<string> WrongChars;
+    public string QuestionWord => _questionWord;
+    public char CorrectChar => _correctChar;
+    public List<string> WrongChars => _wrongChars;
 
+    [SerializeField] private string _questionWord;
+    [SerializeField] private char _correctChar;
+    [SerializeField] private List<string> _wrongChars;
     public WordData(string question, char correct, List<string> wrong)
     {
-        QuestionWord = question;
-        CorrectChar = correct;
-        WrongChars = wrong;
+        _questionWord = question;
+        _correctChar = correct;
+        _wrongChars = wrong;
     }
 }
 /// <summary>
