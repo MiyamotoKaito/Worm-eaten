@@ -1,8 +1,12 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class QuestionSystem : MonoBehaviour
 {
     public WordData Question => _question;
+    public event Action OnReset;
+    public event Action OnNext;
+    public event Action OnAnswer;
 
     private WordData _question;
     private WordManager _wordManager;
