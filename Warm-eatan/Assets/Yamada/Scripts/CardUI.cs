@@ -19,7 +19,7 @@ public sealed class CardUI : MonoBehaviour, IPointerDownHandler, IDragHandler, I
     /// <param name="parent">設定する親オブジェクト</param>
     public void PlaceToParent(Transform parent)
     {
-        transform.SetParent(parent);
+        transform.SetParent(parent, false);
         _rect.anchoredPosition = Vector2.zero;
         // 設置されたときには角度なしの回転で実行
         _rect.localRotation = Quaternion.identity;
@@ -30,7 +30,7 @@ public sealed class CardUI : MonoBehaviour, IPointerDownHandler, IDragHandler, I
     /// </summary>
     public void ReturnToOriginalPos()
     {
-        transform.SetParent(_originalParent);
+        transform.SetParent(_originalParent, false);
         _rect.anchoredPosition = _originalPosition;
         _rect.localRotation = _originalRotation;
     }
@@ -61,7 +61,7 @@ public sealed class CardUI : MonoBehaviour, IPointerDownHandler, IDragHandler, I
     public void OnPointerUp(PointerEventData eventData)
     {
         // Areaの方にドロップしていないなら元の場所に戻す
-        if(transform.parent == _originalParent)
+        if (transform.parent == _originalParent)
             ReturnToOriginalPos();
     }
 

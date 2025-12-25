@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 /// <summary>
 ///         手札の生成と見た目の配置を担当
@@ -10,11 +11,12 @@ public class HandManager : MonoBehaviour
     [SerializeField] private RectTransform _handRoot;
 
     [Header("配置設定")]
-    [SerializeField, Tooltip("カードとカードの幅")] private float _cardSpacing;
+    [SerializeField, Tooltip("カードどうしの間隔")] private float _cardSpacing;
     [SerializeField, Tooltip("最大回転角")] private float _cardRotateAngle;
     [SerializeField, Tooltip("カーブの強さ")] private float _curveHeight = -20f;
 
     private int _handCount = 3;
+    private List<CardUI> _cards = new();
 
     /// <summary>
     ///         ハンドをシャッフル(リセット)する
@@ -38,6 +40,8 @@ public class HandManager : MonoBehaviour
     {
         foreach (Transform t in _handRoot)
             Destroy(t.gameObject);
+
+        _cards.Clear();
     }
 
     /// <summary>
@@ -47,8 +51,17 @@ public class HandManager : MonoBehaviour
     {
         for (int i = 0; i < _handCount; i++)
         {
-            Instantiate(_cardPrefab, _handRoot);
+            GameObject cardObj = Instantiate(_cardPrefab, _handRoot);
+            CardUI card = cardObj.GetComponent<CardUI>();
+
+            RectTransform rect = cardObj.GetComponent<RectTransform>();
+
+            rect.anchoredPosition = Vector2.zero;
+            rect.localRotation = Quaternion.identity;
+            rect.localScale = Vector3.one;
             // ここで文字設定すると思う
+
+            _cards.Add(card);
         }
     }
 
@@ -58,7 +71,7 @@ public class HandManager : MonoBehaviour
     private void LayoutHand()
     {
         // カード枚数数える
-        int count = _handRoot.childCount;
+        int count = _cards.Count;
         if (count == 0) return;
 
         // 中央の基準値を決める
@@ -68,7 +81,7 @@ public class HandManager : MonoBehaviour
         // 左から右へカード処理
         for (int i = 0; i < count; i++)
         {
-            RectTransform card = _handRoot.GetChild(i).GetComponent<RectTransform>();
+            RectTransform card = _cards[i].GetComponent<RectTransform>();
 
             // 中央からのずれをとる
             float offset = i - centerIndex;
