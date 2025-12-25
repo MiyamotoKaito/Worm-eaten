@@ -2,6 +2,9 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+/// <summary>
+///         カード1つに対する制御クラス
+/// </summary>
 public sealed class CardUI : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
 {
     private RectTransform _rect;
@@ -32,16 +35,29 @@ public sealed class CardUI : MonoBehaviour, IPointerDownHandler, IDragHandler, I
         _rect.localRotation = _originalRotation;
     }
 
+    /// <summary>
+    ///         マウスドラッグ時
+    /// </summary>
+    /// <param name="eventData"></param>
     public void OnDrag(PointerEventData eventData)
     {
         _rect.anchoredPosition += eventData.delta / _canvas.scaleFactor;
     }
 
+    /// <summary>
+    ///         マウスクリック時
+    /// </summary>
+    /// <param name="eventData"></param>
     public void OnPointerDown(PointerEventData eventData)
     {
         Save();
+        _rect.localRotation = Quaternion.identity;
     }
 
+    /// <summary>
+    ///         マウスクリックから離した時
+    /// </summary>
+    /// <param name="eventData"></param>
     public void OnPointerUp(PointerEventData eventData)
     {
         // Areaの方にドロップしていないなら元の場所に戻す
