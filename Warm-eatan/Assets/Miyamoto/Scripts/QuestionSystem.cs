@@ -14,4 +14,18 @@ public class QuestionSystem : MonoBehaviour
     {
         _question = _wordManager.SetQuestion();
     }
+    /// <summary>
+    /// 次の問題を作成
+    /// </summary>
+    public void NextQuestion()
+    {
+        var nextQuestion = _wordManager.SetQuestion();
+        //現在の問題と被っていたら再起呼び出し
+        if (_question == nextQuestion)
+        {
+            NextQuestion();
+        }
+
+        _question = nextQuestion;
+    }
 }
