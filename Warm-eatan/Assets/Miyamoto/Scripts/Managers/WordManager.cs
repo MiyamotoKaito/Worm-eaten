@@ -7,7 +7,10 @@ public class WordManager : MonoBehaviour
     public class WordData
     {
         public string QuestionWord;
-        public string CorrectChar;
+        public List<string> CorrectChar;
         public List<string> WrongChars;
     }
+
+    [SerializeField] private List<WordData> _words = new List<WordData>();
+    [SerializeField] private TextAsset _textFile;
 }
