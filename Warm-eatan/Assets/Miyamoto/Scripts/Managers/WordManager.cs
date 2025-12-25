@@ -1,16 +1,19 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// CSVから問題を作成するクラス
+/// </summary>
 public class WordManager : MonoBehaviour
 {
     [System.Serializable]
     public class WordData
     {
         public string QuestionWord;
-        public string CorrectChar;
+        public char CorrectChar;
         public List<string> WrongChars;
 
-        public WordData(string question, string correct, List<string> wrong)
+        public WordData(string question, char correct, List<string> wrong)
         {
             QuestionWord = question;
             CorrectChar = correct;
@@ -55,7 +58,7 @@ public class WordManager : MonoBehaviour
                 wrongArray.Add(parts[i]);
             }
             //コンストラクタで問題、正解、不正解を作成
-            var word = new WordData(parts[0], parts[1], wrongArray);
+            var word = new WordData(parts[0], parts[0][Random.Range(0, parts.Length)], wrongArray);
             //_wordsに格納
             _words.Add(word);
         }
