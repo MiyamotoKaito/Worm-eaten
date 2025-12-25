@@ -1,25 +1,26 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class WordData
+{
+    public string QuestionWord;
+    public char CorrectChar;
+    public List<string> WrongChars;
+
+    public WordData(string question, char correct, List<string> wrong)
+    {
+        QuestionWord = question;
+        CorrectChar = correct;
+        WrongChars = wrong;
+    }
+}
 /// <summary>
 /// CSVから問題を作成するクラス
 /// </summary>
 public class WordManager : MonoBehaviour
 {
-    [System.Serializable]
-    public class WordData
-    {
-        public string QuestionWord;
-        public char CorrectChar;
-        public List<string> WrongChars;
 
-        public WordData(string question, char correct, List<string> wrong)
-        {
-            QuestionWord = question;
-            CorrectChar = correct;
-            WrongChars = wrong;
-        }
-    }
     [SerializeField] private TextAsset _textFile;
     [SerializeField] private List<WordData> _words = new List<WordData>();
 
