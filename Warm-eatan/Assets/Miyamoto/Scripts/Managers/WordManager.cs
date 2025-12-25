@@ -18,10 +18,16 @@ public class WordManager : MonoBehaviour
             WrongChars = wrong;
         }
     }
-
-    [SerializeField] private List<WordData> _words = new List<WordData>();
     [SerializeField] private TextAsset _textFile;
+    [SerializeField] private List<WordData> _words = new List<WordData>();
 
+    private void Awake()
+    {
+        LoadWords();
+    }
+    /// <summary>
+    /// 参照しているテキストアセットからデータを読み込んでリストに格納する
+    /// </summary>
     private void LoadWords()
     {
         if (_textFile == null)
