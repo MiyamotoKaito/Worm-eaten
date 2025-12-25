@@ -10,9 +10,9 @@ public class HandManager : MonoBehaviour
     [SerializeField] private RectTransform _handRoot;
 
     [Header("配置設定")]
-    [SerializeField,Tooltip("カードとカードの幅")] private float _cardSpacing;
-    [SerializeField,Tooltip("最大回転角")] private float _cardRotateAngle;
-    [SerializeField,Tooltip("カーブの強さ")] private float _curveHeight = -20f;
+    [SerializeField, Tooltip("カードとカードの幅")] private float _cardSpacing;
+    [SerializeField, Tooltip("最大回転角")] private float _cardRotateAngle;
+    [SerializeField, Tooltip("カーブの強さ")] private float _curveHeight = -20f;
 
     private int _handCount = 3;
 
@@ -85,6 +85,16 @@ public class HandManager : MonoBehaviour
 
     private void Start()
     {
+        if (_cardPrefab == null)
+        {
+            Debug.LogError("HandManager: _cardPrefab が設定されていません。");
+            return;
+        }
+        if (_handRoot == null)
+        {
+            Debug.LogError("HandManager: _handRoot が設定されていません。");
+            return;
+        }
         ShuffleHand();
     }
 }
