@@ -30,6 +30,9 @@ public class QuestionSystem : MonoBehaviour
             NextQuestion();
         }
         else
+        {
             _question = nextQuestion;
+            OnNext?.Invoke();
+        }
     }
 }
