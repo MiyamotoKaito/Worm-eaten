@@ -35,4 +35,18 @@ public class QuestionSystem : MonoBehaviour
             OnNext?.Invoke();
         }
     }
+    /// <summary>
+    /// 答えを提出
+    /// </summary>
+    public void Answer()
+    {
+        OnAnswer?.Invoke();
+    }
+    /// <summary>
+    /// リセット
+    /// </summary>
+    public void ResetCard()
+    {
+        OnReset?.Invoke();
+    }
 }
