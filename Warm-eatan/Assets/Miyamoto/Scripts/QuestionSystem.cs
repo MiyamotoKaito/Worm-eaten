@@ -1,8 +1,12 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class QuestionSystem : MonoBehaviour
 {
     public WordData Question => _question;
+    public event Action OnReset;
+    public event Action OnNext;
+    public event Action OnAnswer;
 
     private WordData _question;
     private WordManager _wordManager;
@@ -26,6 +30,23 @@ public class QuestionSystem : MonoBehaviour
             NextQuestion();
         }
         else
+        {
             _question = nextQuestion;
+            OnNext?.Invoke();
+        }
+    }
+    /// <summary>
+    /// 答えを提出
+    /// </summary>
+    public void Answer()
+    {
+        OnAnswer?.Invoke();
+    }
+    /// <summary>
+    /// リセット
+    /// </summary>
+    public void ResetCard()
+    {
+        OnReset?.Invoke();
     }
 }
