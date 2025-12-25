@@ -1,16 +1,20 @@
-using UnityEngine;
+﻿using UnityEngine;
 
+/// <summary>
+///         シャッフル用の虫
+/// </summary>
 public class Aomushi : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [SerializeField] private HandManager _handManager;
 
-    // Update is called once per frame
-    void Update()
+    /// <summary>
+    ///         虫をクリックした
+    /// </summary>
+    public void OnTouch()
     {
-        
+        // 問題にセットされているのをリセットする必要あり
+
+        _handManager.ShuffleHand();
+        Debug.Log("青虫をクリック! : シャッフル");
     }
 }
