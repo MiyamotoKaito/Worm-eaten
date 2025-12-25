@@ -1,16 +1,23 @@
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class AnswerDropArea : MonoBehaviour
+public class AnswerDropArea : MonoBehaviour, IDropHandler
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [SerializeField] private Transform _slotRoot;
 
-    // Update is called once per frame
-    void Update()
+    private CardUI _currentCard;
+
+    public void OnDrop(PointerEventData eventData)
     {
-        
+        CardUI newCard = eventData.pointerDrag?.GetComponent<CardUI>();
+        if (newCard == null) return;
+
+        if(_currentCard != null)
+        {
+            _currentCard.ReturnToOriginalPos();
+        }
+
+        _currentCard = newCard;
+        newCard.PlaceToParent(_slotRoot);
     }
 }
