@@ -53,7 +53,7 @@ public class WordManager : MonoBehaviour
             }
             //不正解の文字を一時的に補完するリスト
             var wrongArray = new List<string>();
-            for (int i = 2; i < parts.Length; i++)
+            for (int i = 1; i < parts.Length; i++)
             {
                 wrongArray.Add(parts[i]);
             }
