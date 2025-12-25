@@ -7,6 +7,10 @@ public class AnswerDropArea : MonoBehaviour, IDropHandler
 
     private CardUI _currentCard;
 
+    /// <summary>
+    ///         虫食いドロップ時の処理
+    /// </summary>
+    /// <param name="eventData"></param>
     public void OnDrop(PointerEventData eventData)
     {
         CardUI newCard = eventData.pointerDrag?.GetComponent<CardUI>();
@@ -17,6 +21,7 @@ public class AnswerDropArea : MonoBehaviour, IDropHandler
             _currentCard.ReturnToOriginalPos();
         }
 
+        // 現在のカードに新しいものを挿入
         _currentCard = newCard;
         newCard.PlaceToParent(_slotRoot);
     }
