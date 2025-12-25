@@ -8,6 +8,7 @@ public sealed class CardUI : MonoBehaviour, IPointerDownHandler, IDragHandler, I
     private Canvas _canvas;
     private Transform _originalParent;
     private Vector2 _originalPosition;
+    private Quaternion _originalRotation;
 
     /// <summary>
     ///         親オブジェクトに設定する
@@ -17,6 +18,8 @@ public sealed class CardUI : MonoBehaviour, IPointerDownHandler, IDragHandler, I
     {
         transform.SetParent(parent);
         _rect.anchoredPosition = Vector2.zero;
+        // 設置されたときには角度なしの回転で実行
+        _rect.localRotation = Quaternion.identity;
     }
 
     /// <summary>
@@ -26,6 +29,7 @@ public sealed class CardUI : MonoBehaviour, IPointerDownHandler, IDragHandler, I
     {
         transform.SetParent(_originalParent);
         _rect.anchoredPosition = _originalPosition;
+        _rect.localRotation = _originalRotation;
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -52,6 +56,7 @@ public sealed class CardUI : MonoBehaviour, IPointerDownHandler, IDragHandler, I
     {
         _originalParent = transform.parent;
         _originalPosition = _rect.anchoredPosition;
+        _originalRotation = _rect.localRotation;
     }
 
     private void Awake()
