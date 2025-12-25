@@ -1,16 +1,13 @@
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class WordManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [System.Serializable]
+    public class WordData
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public string QuestionWord;
+        public string CorrectChar;
+        public List<string> WrongChars;
     }
 }
