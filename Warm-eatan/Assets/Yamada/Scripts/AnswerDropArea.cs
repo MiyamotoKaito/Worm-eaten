@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
+/// <summary>
+///         問題の虫食いスロット
+///         移動制御、後で必要
+/// </summary>
 public class AnswerDropArea : MonoBehaviour, IDropHandler
 {
     [SerializeField] private Transform _slotRoot;
