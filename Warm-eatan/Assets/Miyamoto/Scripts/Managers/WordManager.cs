@@ -66,6 +66,6 @@ public class WordManager : MonoBehaviour
     /// <returns></returns>
     public WordData SetQuestion()
     {
-        return _words[Random.Range(0, _words.Count - 1)];
+        return _words[Random.Range(0, _words.Count)];
     }
 }
