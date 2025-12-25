@@ -9,12 +9,19 @@ public sealed class CardUI : MonoBehaviour, IPointerDownHandler, IDragHandler, I
     private Transform _originalParent;
     private Vector2 _originalPosition;
 
+    /// <summary>
+    ///         親オブジェクトに設定する
+    /// </summary>
+    /// <param name="parent">設定する親オブジェクト</param>
     public void PlaceToParent(Transform parent)
     {
         transform.SetParent(parent);
         _rect.anchoredPosition = Vector2.zero;
     }
 
+    /// <summary>
+    ///         元のポジションに移動する
+    /// </summary>
     public void ReturnToOriginalPos()
     {
         transform.SetParent(_originalParent);
@@ -33,8 +40,14 @@ public sealed class CardUI : MonoBehaviour, IPointerDownHandler, IDragHandler, I
 
     public void OnPointerUp(PointerEventData eventData)
     {
+        // Areaの方にドロップしていないなら元の場所に戻す
+        if(transform.parent == _originalParent)
+            ReturnToOriginalPos();
     }
 
+    /// <summary>
+    ///         親オブジェクトと元のポジションを記録する
+    /// </summary>
     private void Save()
     {
         _originalParent = transform.parent;
