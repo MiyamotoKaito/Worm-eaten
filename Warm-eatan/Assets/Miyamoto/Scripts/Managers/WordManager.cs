@@ -35,7 +35,7 @@ public class WordManager : MonoBehaviour
             return;
         }
         //改行で切り取る
-        var lines = _textFile.text.Split("\n");
+        var lines = _textFile.text.Split(new[] { "\r\n", "\r", "\n" }, System.StringSplitOptions.None);
         //最初の行はスキップするためのフラグ
         bool isFirstLine = false;
         foreach (var line in lines)
