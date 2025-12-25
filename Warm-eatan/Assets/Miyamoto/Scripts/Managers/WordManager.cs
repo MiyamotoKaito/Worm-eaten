@@ -58,7 +58,7 @@ public class WordManager : MonoBehaviour
                 wrongArray.Add(parts[i]);
             }
             //コンストラクタで問題、正解、不正解を作成
-            var word = new WordData(parts[0], parts[0][Random.Range(0, parts.Length)], wrongArray);
+            var word = new WordData(parts[0], parts[0][Random.Range(0, parts[0].Length)], wrongArray);
             //_wordsに格納
             _words.Add(word);
         }
