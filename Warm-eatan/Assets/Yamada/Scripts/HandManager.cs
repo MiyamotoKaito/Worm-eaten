@@ -21,6 +21,11 @@ public class HandManager : MonoBehaviour
     /// </summary>
     public void ShuffleHand()
     {
+        if (_cardPrefab == null || _handRoot == null)
+        {
+            Debug.LogWarning("HandManager: 必要な参照が設定されていません。");
+            return;
+        }
         ClearHand();
         CreateHand();
         LayoutHand();
