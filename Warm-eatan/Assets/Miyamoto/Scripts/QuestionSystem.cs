@@ -25,7 +25,7 @@ public class QuestionSystem : MonoBehaviour
         {
             NextQuestion();
         }
-
-        _question = nextQuestion;
+        else
+            _question = nextQuestion;
     }
 }
