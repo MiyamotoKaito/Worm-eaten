@@ -1,16 +1,42 @@
+﻿using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class CardUI : MonoBehaviour
+public sealed class CardUI : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private RectTransform _rect;
+    private Canvas _canvas;
+    private Transform _originalParent;
+    private Vector2 _originalPosition;
+
+    public void PlaceToParent(Transform parent)
     {
-        
+        transform.SetParent(parent);
+        _rect.anchoredPosition = Vector2.zero;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ReturnToOriginalPos()
     {
-        
+        transform.SetParent(_originalParent);
+        _rect.anchoredPosition = _originalPosition;
+    }
+
+    public void OnDrag(PointerEventData eventData)
+    {
+        _rect.anchoredPosition += eventData.delta / _canvas.scaleFactor;
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+    }
+
+    private void Awake()
+    {
+        _rect = GetComponent<RectTransform>();
+        _canvas = GetComponentInParent<Canvas>();
     }
 }
