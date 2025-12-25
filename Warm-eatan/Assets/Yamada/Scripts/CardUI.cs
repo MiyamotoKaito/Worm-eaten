@@ -28,10 +28,17 @@ public sealed class CardUI : MonoBehaviour, IPointerDownHandler, IDragHandler, I
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        Save();
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
+    }
+
+    private void Save()
+    {
+        _originalParent = transform.parent;
+        _originalPosition = _rect.anchoredPosition;
     }
 
     private void Awake()
