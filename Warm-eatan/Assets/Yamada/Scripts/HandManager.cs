@@ -75,7 +75,8 @@ public class HandManager : MonoBehaviour
             float y = Mathf.Abs(offset) * _curveHeight;
 
             // offset / centerIndexで-1から1に正規化して最大回転角を掛ける
-            float angle = -(offset / centerIndex) * _cardRotateAngle;
+            // カードが1枚の場合はゼロ除算を避けるため角度を0にする
+            float angle = (centerIndex != 0) ? -(offset / centerIndex) * _cardRotateAngle : 0f;
 
             //反映
             card.anchoredPosition = new Vector2(x, y);
