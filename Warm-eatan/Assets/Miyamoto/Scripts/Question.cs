@@ -54,7 +54,7 @@ public class Question : MonoBehaviour
                 // UIを配置（既存のUIがあれば削除）
                 if (_currentDropImage != null)
                 {
-                    Destroy(_currentDropImage);
+                    Destroy(_currentDropImage.gameObject);
                 }
                 _currentDropImage = Instantiate(_canDropImage, worldPosition, Quaternion.identity);
 
