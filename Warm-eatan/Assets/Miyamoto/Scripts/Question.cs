@@ -7,6 +7,7 @@ public class Question : MonoBehaviour
     [SerializeField] private TextMeshPro _textMesh;
     [SerializeField] private Image _canDropImage;
     private QuestionSystem _questionSystem;
+    private Image _currentDropImage;
 
     private void Awake()
     {
@@ -15,7 +16,7 @@ public class Question : MonoBehaviour
     }
     private void OnEnable()
     {
-       _questionSystem.OnReset += ResetQuestion;
+        _questionSystem.OnReset += ResetQuestion;
     }
     private void OnDisable()
     {
@@ -25,6 +26,7 @@ public class Question : MonoBehaviour
     private void ResetQuestion()
     {
         _textMesh.text = _questionSystem.Question.ToString();
+        UpdateDisplayText();
     }
     private void UpdateDisplayText()
     {
@@ -50,7 +52,11 @@ public class Question : MonoBehaviour
                 Vector3 worldPosition = _textMesh.transform.TransformPoint(centerPosition);
 
                 // UIを配置（既存のUIがあれば削除）
-                Instantiate(_canDropImage, worldPosition, Quaternion.identity);
+                if (_currentDropImage != null)
+                {
+                    Destroy(_currentDropImage);
+                }
+                _currentDropImage = Instantiate(_canDropImage, worldPosition, Quaternion.identity);
 
                 break; // 最初の一致で終了
             }
